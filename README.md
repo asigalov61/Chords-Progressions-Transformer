@@ -5,37 +5,48 @@
 
 ***
 
-# Other chords-related projects
+## Original Version
 
-## [chords_recognizer](https://github.com/asigalov61/chord_recognizer)
+[![Open In Colab][colab-badge]][colab-notebook1]
 
-## [magenta note-seq chords labeler](https://colab.research.google.com/github/asigalov61/tegridy-tools/blob/main/tegridy-tools/notebooks/Magenta_note_seq_chords_labeler.ipynb)
+[colab-notebook1]: <https://colab.research.google.com/github/asigalov61/Chords-Progressions-Transformer/blob/main/Chords_Progressions_Transformer.ipynb>
+[colab-badge]: <https://colab.research.google.com/assets/colab-badge.svg>
 
-## [free-midi-chords](https://github.com/ldrolez/free-midi-chords)
+### Features demonstration
 
-## [chords2midi](https://github.com/Miserlou/chords2midi)
+***
 
-## [chorder](https://github.com/joshuachang2311/chorder)
+## Other chords-related projects
 
-## [pychorelib](https://github.com/asigalov61/tegridy-tools/tree/main/tegridy-tools/PyChoReLib)
+### [chords_recognizer](https://github.com/asigalov61/chord_recognizer)
 
-## [pychord](https://github.com/yuma-m/pychord)
+### [magenta note-seq chords labeler](https://colab.research.google.com/github/asigalov61/tegridy-tools/blob/main/tegridy-tools/notebooks/Magenta_note_seq_chords_labeler.ipynb)
 
-## [accomontage2](https://github.com/billyblu2000/AccoMontage2)
+### [free-midi-chords](https://github.com/ldrolez/free-midi-chords)
 
-## [chord-melody-dataset](https://github.com/shiehn/chord-melody-dataset)
+### [chords2midi](https://github.com/Miserlou/chords2midi)
 
-## [autoharmonizer](https://github.com/sander-wood/autoharmonizer)
+### [chorder](https://github.com/joshuachang2311/chorder)
 
-## [chords-suggester](https://github.com/huanlui/chord-suggester)
+### [pychorelib](https://github.com/asigalov61/tegridy-tools/tree/main/tegridy-tools/PyChoReLib)
 
-## [jchord](https://github.com/jonathangjertsen/jchord)
+### [pychord](https://github.com/yuma-m/pychord)
 
-## [chord-generation](https://github.com/sander-wood/chord_generation)
+### [accomontage2](https://github.com/billyblu2000/AccoMontage2)
 
-## [chord-composer](https://github.com/ynot4/chord-composer)
+### [chord-melody-dataset](https://github.com/shiehn/chord-melody-dataset)
 
-## [hooktheory](https://www.hooktheory.com/)
+### [autoharmonizer](https://github.com/sander-wood/autoharmonizer)
+
+### [chords-suggester](https://github.com/huanlui/chord-suggester)
+
+### [jchord](https://github.com/jonathangjertsen/jchord)
+
+### [chord-generation](https://github.com/sander-wood/chord_generation)
+
+### [chord-composer](https://github.com/ynot4/chord-composer)
+
+### [hooktheory](https://www.hooktheory.com/)
 
 ***
 
