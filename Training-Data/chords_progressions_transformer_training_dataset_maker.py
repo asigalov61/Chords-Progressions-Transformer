@@ -66,7 +66,7 @@ print('Enjoy! :)')
 """# (DOWNLOAD MIDI DATASET)"""
 
 # Commented out IPython magic to ensure Python compatibility.
-# @title Download and untar LAKH clean_midi MIDI subset
+# @title Download and unzip Monster MIDI Dataset Sample Search Results
 # %cd /content/Dataset/
 !wget https://huggingface.co/datasets/projectlosangeles/Monster-MIDI-Dataset/resolve/main/Monster_MIDI_Dataset_Search_Results_Ver_1_0_CC_BY_NC_SA.zip
 !unzip Monster_MIDI_Dataset_Search_Results_Ver_1_0_CC_BY_NC_SA.zip
