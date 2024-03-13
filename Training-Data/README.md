@@ -14,7 +14,7 @@
 ***
 
 ## Recommended MIDI datasets: 
-### 1) [Monster MIDI Dataset Sample Search Results](https://huggingface.co/datasets/projectlosangeles/Monster-MIDI-Dataset/blob/main/Monster_MIDI_Dataset_Search_Results_Ver_1_0_CC_BY_NC_SA.zip)(included with code/colab)
+### 1) [Monster MIDI Dataset Sample Search Results](https://huggingface.co/datasets/projectlosangeles/Monster-MIDI-Dataset/blob/main/Monster_MIDI_Dataset_Search_Results_Ver_1_0_CC_BY_NC_SA.zip) (included with code/colab)
 
 ***
 
