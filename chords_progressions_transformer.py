@@ -635,6 +635,8 @@ for i in range(number_of_batches_to_generate):
 
 # @title Generate chords progressions from custom MIDI chords
 
+#@markdown NOTE: You can stop the generation at any time to render partial results
+
 #@markdown Generation settings
 
 output_MIDI_patch_number = 0 # @param {type:"slider", min:0, max:127, step:1}
@@ -691,14 +693,27 @@ torch.cuda.empty_cache()
 output = []
 
 for c in tqdm.tqdm(chords[:number_of_chords_to_generate]):
-  output.append(c)
 
-  out = generate_chords(output,
-                       temperature=temperature,
-                       max_chords_limit=max_number_of_notes_per_chord,
-                       num_memory_tokens=number_of_memory_tokens
-                       )
-  output.extend(out)
+  try:
+
+    output.append(c)
+
+    out = generate_chords(output,
+                        temperature=temperature,
+                        max_chords_limit=max_number_of_notes_per_chord,
+                        num_memory_tokens=number_of_memory_tokens
+                        )
+    output.extend(out)
+
+  except KeyboardInterrupt:
+    print('=' * 70)
+    print('Stopping generation...')
+    break
+
+  except Exception as e:
+    print('=' * 70)
+    print('Error:', e)
+    break
 
 torch.cuda.empty_cache()
 
