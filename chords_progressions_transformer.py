@@ -311,6 +311,7 @@ for i in range(number_of_batches_to_generate):
 #@markdown Press play button to to upload your own seed MIDI or to load one of the provided sample seed MIDIs from the dropdown list below
 
 select_seed_MIDI = "Upload your own custom MIDI" # @param ["Upload your own custom MIDI", "Chords-Progressions-Transformer-Piano-Seed-1", "Chords-Progressions-Transformer-Piano-Seed-2", "Chords-Progressions-Transformer-Piano-Seed-3", "Chords-Progressions-Transformer-Piano-Seed-4", "Chords-Progressions-Transformer-Piano-Seed-5", "Chords-Progressions-Transformer-Piano-Seed-6", "Chords-Progressions-Transformer-MI-Seed-1", "Chords-Progressions-Transformer-MI-Seed-2", "Chords-Progressions-Transformer-MI-Seed-3", "Chords-Progressions-Transformer-MI-Seed-4", "Chords-Progressions-Transformer-MI-Seed-5", "Chords-Progressions-Transformer-MI-Seed-6"]
+strip_notes_from_composition = False # @param {type:"boolean"}
 render_MIDI_to_audio = False # @param {type:"boolean"}
 
 print('=' * 70)
@@ -404,7 +405,13 @@ if f != '':
             chord_token = TMIDIX.ALL_CHORDS_SORTED.index(checked_tones_chord)
 
         melody_chords.extend([chord_token+384])
-        chords.extend([chord_token+384])
+
+        if strip_notes_from_composition:
+          if len(tones_chord) > 1:
+            chords.extend([chord_token+384])
+
+        else:
+          chords.extend([chord_token+384])
 
         if first_chord:
                 melody_chords.extend([0])
@@ -521,13 +528,13 @@ else:
 #@markdown Generation settings
 
 output_MIDI_patch_number = 0 # @param {type:"slider", min:0, max:127, step:1}
-number_of_prime_tokens = 7104 # @param {type:"slider", min:4, max:8192, step:4}
+number_of_prime_tokens = 512 # @param {type:"slider", min:4, max:8192, step:4}
 number_of_tokens_to_generate = 512 # @param {type:"slider", min:40, max:8192, step:4}
 number_of_batches_to_generate = 4 #@param {type:"slider", min:1, max:16, step:1}
 temperature = 0.9 # @param {type:"slider", min:0.1, max:1, step:0.05}
 
 #@markdown Other settings
-include_prime_tokens_in_generated_output = False #@param {type:"boolean"}
+include_prime_tokens_in_generated_output = True #@param {type:"boolean"}
 render_MIDI_to_audio = True # @param {type:"boolean"}
 
 print('=' * 70)
@@ -730,6 +737,8 @@ if len(out) != 0:
         if 256 <= ss < 384:
 
             pitch = (ss-256)
+
+            vel = max(40, pitch)
 
             song_f.append(['note', time, dur, channel, pitch, vel, output_MIDI_patch_number])
 
