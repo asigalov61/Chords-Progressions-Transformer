@@ -381,6 +381,8 @@ if f != '':
 
     melody_chords = []
     chords = []
+    times = [0]
+    durs = []
 
     #=======================================================
     # MAIN PROCESSING CYCLE
@@ -448,6 +450,13 @@ if f != '':
 
             if delta_time != 0:
                 melody_chords.extend([delta_time, dur+128, ptc+256])
+                if strip_notes_from_composition:
+                  if len(c) > 1:
+                    times.append(delta_time)
+                    durs.append(dur+128)
+                else:
+                    times.append(delta_time)
+                    durs.append(dur+128)
             else:
                 melody_chords.extend([dur+128, ptc+256])
 
@@ -639,6 +648,7 @@ for i in range(number_of_batches_to_generate):
 
 #@markdown Generation settings
 
+conditioning_type = "Chords-Times" # @param ["Chords", "Chords-Times", "Chords-Times-Durations"]
 output_MIDI_patch_number = 0 # @param {type:"slider", min:0, max:127, step:1}
 number_of_chords_to_generate = 128 # @param {type:"slider", min:8, max:4096, step:1}
 max_number_of_notes_per_chord = 8 # @param {type:"slider", min:1, max:10, step:1}
@@ -692,11 +702,19 @@ torch.cuda.empty_cache()
 
 output = []
 
+idx = 0
+
 for c in tqdm.tqdm(chords[:number_of_chords_to_generate]):
 
   try:
 
     output.append(c)
+
+    if conditioning_type == 'Chords-Times' or conditioning_type == 'Chords-Times-Durations':
+      output.append(times[idx])
+
+    if conditioning_type == 'Chords-Times-Durations':
+      output.append(durs[idx])
 
     out = generate_chords(output,
                         temperature=temperature,
@@ -704,6 +722,8 @@ for c in tqdm.tqdm(chords[:number_of_chords_to_generate]):
                         num_memory_tokens=number_of_memory_tokens
                         )
     output.extend(out)
+
+    idx += 1
 
   except KeyboardInterrupt:
     print('=' * 70)
