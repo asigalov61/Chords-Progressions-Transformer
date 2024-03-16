@@ -648,7 +648,7 @@ for i in range(number_of_batches_to_generate):
 
 #@markdown Generation settings
 
-conditioning_type = "Chords-Times" # @param ["Chords", "Chords-Times", "Chords-Times-Durations"]
+conditioning_type = "Chords" # @param ["Chords", "Chords-Times", "Chords-Times-Durations"]
 output_MIDI_patch_number = 0 # @param {type:"slider", min:0, max:127, step:1}
 number_of_chords_to_generate = 128 # @param {type:"slider", min:8, max:4096, step:1}
 max_number_of_notes_per_chord = 8 # @param {type:"slider", min:1, max:10, step:1}
