@@ -524,7 +524,7 @@ if f != '':
 
           vel = max(40, pitch)
 
-          song_f.append(['note', time, dur, channel, pitch, vel, output_MIDI_patch_number])
+          song_f.append(['note', time, dur, channel, pitch, vel, 0])
 
   detailed_stats = TMIDIX.Tegridy_ms_SONG_to_MIDI_Converter(song_f,
                                                           output_signature = 'Chords Progressions Transformer',
