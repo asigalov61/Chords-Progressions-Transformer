@@ -91,6 +91,10 @@ print('=' * 70)
 
 #@title Load Chords Progressions Transformer Pre-Trained Model
 
+#@markdown Choose model
+
+select_model_to_load = "93M-1024E-8L-8H-Very-Fast-Small" # @param ["93M-1024E-8L-8H-Very-Fast-Small", "187M-2048E-4L-16H-Fast-Small"]
+
 #@markdown Model precision option
 
 model_precision = "bfloat16" # @param ["bfloat16", "float16"]
@@ -108,16 +112,38 @@ print('=' * 70)
 
 full_path_to_models_dir = "/content/Chords-Progressions-Transformer/Models"
 
-model_checkpoint_file_name = 'Chords_Progressions_Transformer_Small_Trained_Model_9609_steps_1.0704_loss_0.6927_acc.pth'
-model_path = full_path_to_models_dir+'/Small/'+model_checkpoint_file_name
-if os.path.isfile(model_path):
-  print('Model already exists...')
+if select_model_to_load == '93M-1024E-8L-8H-Very-Fast-Small':
 
+  dim = 1024
+  depth = 8
+  heads = 8
+
+  model_checkpoint_file_name = 'Chords_Progressions_Transformer_Small_Trained_Model_9609_steps_1.0704_loss_0.6927_acc.pth'
+  model_path = full_path_to_models_dir+'/Small/'+model_checkpoint_file_name
+  if os.path.isfile(model_path):
+    print('Model already exists...')
+
+  else:
+    hf_hub_download(repo_id='asigalov61/Chords-Progressions-Transformer',
+                    filename=model_checkpoint_file_name,
+                    local_dir='/content/Chords-Progressions-Transformer/Models/Small',
+                    local_dir_use_symlinks=False)
 else:
-  hf_hub_download(repo_id='asigalov61/Chords-Progressions-Transformer',
-                  filename=model_checkpoint_file_name,
-                  local_dir='/content/Chords-Progressions-Transformer/Models/Small',
-                  local_dir_use_symlinks=False)
+
+  dim = 2048
+  depth = 4
+  heads = 16
+
+  model_checkpoint_file_name = 'Chords_Progressions_Transformer_Small_2048_Trained_Model_12947_steps_0.9316_loss_0.7386_acc.pth'
+  model_path = full_path_to_models_dir+'/Small_2048/'+model_checkpoint_file_name
+  if os.path.isfile(model_path):
+    print('Model already exists...')
+
+  else:
+    hf_hub_download(repo_id='asigalov61/Chords-Progressions-Transformer',
+                    filename=model_checkpoint_file_name,
+                    local_dir='/content/Chords-Progressions-Transformer/Models/Small_2048',
+                    local_dir_use_symlinks=False)
 
 print('=' * 70)
 print('Instantiating model...')
@@ -143,7 +169,7 @@ PAD_IDX = 707 # Models pad index
 model = TransformerWrapper(
     num_tokens = PAD_IDX+1,
     max_seq_len = SEQ_LEN,
-    attn_layers = Decoder(dim = 1024, depth = 8, heads = 8, attn_flash = True)
+    attn_layers = Decoder(dim = dim, depth = depth, heads = heads, attn_flash = True)
     )
 
 model = AutoregressiveWrapper(model, ignore_index = PAD_IDX)
