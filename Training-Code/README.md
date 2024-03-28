@@ -13,6 +13,17 @@
 
 ***
 
+## Aux Version
+
+[![Open In Colab][colab-badge]][colab-notebook2]
+
+[colab-notebook2]: <https://colab.research.google.com/github/asigalov61/Chords-Progressions-Transformer/blob/main/Training-Code/Chords_Progressions_Transformer_Aux_Maker.ipynb>
+[colab-badge]: <https://colab.research.google.com/assets/colab-badge.svg>
+
+### This is a version which was used to create Chords Progressions Transformer Aux model
+
+***
+
 ## Recommended DL/ML cloud provider: [Lambda Labs](https://lambdalabs.com/)
 
 ***
