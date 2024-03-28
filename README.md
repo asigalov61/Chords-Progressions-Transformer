@@ -16,6 +16,17 @@
 
 ***
 
+## Dual Models Version
+
+[![Open In Colab][colab-badge]][colab-notebook2]
+
+[colab-notebook2]: <https://colab.research.google.com/github/asigalov61/Chords-Progressions-Transformer/blob/main/Chords_Progressions_Transformer_Aux.ipynb>
+[colab-badge]: <https://colab.research.google.com/assets/colab-badge.svg>
+
+### Features demonstration
+
+***
+
 ## Other chords-related projects
 
 ### [chords_recognizer](https://github.com/asigalov61/chord_recognizer)
