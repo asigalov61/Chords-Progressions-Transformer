@@ -12,7 +12,7 @@
 [colab-notebook1]: <https://colab.research.google.com/github/asigalov61/Chords-Progressions-Transformer/blob/main/Chords_Progressions_Transformer.ipynb>
 [colab-badge]: <https://colab.research.google.com/assets/colab-badge.svg>
 
-### Features demonstration
+### Improvs, continuations and custom chords progressions generation
 
 ***
 
@@ -23,7 +23,18 @@
 [colab-notebook2]: <https://colab.research.google.com/github/asigalov61/Chords-Progressions-Transformer/blob/main/Chords_Progressions_Transformer_Aux.ipynb>
 [colab-badge]: <https://colab.research.google.com/assets/colab-badge.svg>
 
-### Features demonstration
+### Dual model version for automatic unique chords progressions generation
+
+***
+
+## Melody Version
+
+[![Open In Colab][colab-badge]][colab-notebook3]
+
+[colab-notebook3]: <https://colab.research.google.com/github/asigalov61/Chords-Progressions-Transformer/blob/main/Chords_Progressions_Transformer_Melody.ipynb>
+[colab-badge]: <https://colab.research.google.com/assets/colab-badge.svg>
+
+### Generate unique melody for any chords progressions
 
 ***
 
