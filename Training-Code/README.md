@@ -24,6 +24,17 @@
 
 ***
 
+## Melody Version
+
+[![Open In Colab][colab-badge]][colab-notebook3]
+
+[colab-notebook3]: <https://colab.research.google.com/github/asigalov61/Chords-Progressions-Transformer/blob/main/Training-Code/Chords_Progressions_Transformer_Melody_Maker.ipynb>
+[colab-badge]: <https://colab.research.google.com/assets/colab-badge.svg>
+
+### This is a version which was used to create Chords Progressions Transformer Melody model
+
+***
+
 ## Recommended DL/ML cloud provider: [Lambda Labs](https://lambdalabs.com/)
 
 ***
