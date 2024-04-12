@@ -93,11 +93,11 @@ print('=' * 70)
 
 #@markdown Choose model
 
-select_model_to_load = "93M-1024E-8L-8H-Very-Fast-Small" # @param ["93M-1024E-8L-8H-Very-Fast-Small", "187M-2048E-4L-16H-Fast-Small"]
+select_model_to_load = "187M-2048E-4L-16H-FP32-Fast-Small" # @param ["93M-1024E-8L-8H-Very-Fast-Small", "187M-2048E-4L-16H-Fast-Small", "187M-2048E-4L-16H-FP32-Fast-Small"]
 
 #@markdown Model precision option
 
-model_precision = "bfloat16" # @param ["bfloat16", "float16"]
+model_precision = "float32" # @param ["bfloat16", "float16", "float32"]
 
 #@markdown bfloat16 == Half precision/faster speed (if supported, otherwise the model will default to float16)
 
@@ -128,7 +128,8 @@ if select_model_to_load == '93M-1024E-8L-8H-Very-Fast-Small':
                     filename=model_checkpoint_file_name,
                     local_dir='/content/Chords-Progressions-Transformer/Models/Small',
                     local_dir_use_symlinks=False)
-else:
+
+elif select_model_to_load == '187M-2048E-4L-16H-Fast-Small':
 
   dim = 2048
   depth = 4
@@ -145,6 +146,23 @@ else:
                     local_dir='/content/Chords-Progressions-Transformer/Models/Small_2048',
                     local_dir_use_symlinks=False)
 
+elif select_model_to_load == '187M-2048E-4L-16H-FP32-Fast-Small':
+
+  dim = 2048
+  depth = 4
+  heads = 16
+
+  model_checkpoint_file_name = 'Chords_Progressions_Transformer_Small_2048_FP32_Trained_Model_6265_steps_0.9272_loss_0.7369_acc.pth'
+  model_path = full_path_to_models_dir+'/Small_2048_FP32/'+model_checkpoint_file_name
+  if os.path.isfile(model_path):
+    print('Model already exists...')
+
+  else:
+    hf_hub_download(repo_id='asigalov61/Chords-Progressions-Transformer',
+                    filename=model_checkpoint_file_name,
+                    local_dir='/content/Chords-Progressions-Transformer/Models/Small_2048_FP32',
+                    local_dir_use_symlinks=False)
+
 print('=' * 70)
 print('Instantiating model...')
 
@@ -158,7 +176,10 @@ else:
 if model_precision == 'float16':
   dtype = 'float16'
 
-ptdtype = {'bfloat16': torch.bfloat16, 'float16': torch.float16}[dtype]
+if model_precision == 'float32':
+  dtype = 'float32'
+
+ptdtype = {'bfloat16': torch.bfloat16, 'float16': torch.float16, 'float32': torch.float32}[dtype]
 ctx = torch.amp.autocast(device_type=device_type, dtype=ptdtype)
 
 SEQ_LEN = 8192 # Models seq len
@@ -386,7 +407,12 @@ if f != '':
     #===============================================================================
     # Augmented enhanced score notes
 
-    no_drums_escore_notes = TMIDIX.augment_enhanced_score_notes(no_drums_escore_notes)
+    if select_model_to_load == '187M-2048E-4L-16H-FP32-Fast-Small':
+      no_drums_escore_notes = TMIDIX.augment_enhanced_score_notes(no_drums_escore_notes,
+                                                                  timings_divider=32
+                                                                  )
+    else:
+      no_drums_escore_notes = TMIDIX.augment_enhanced_score_notes(no_drums_escore_notes)
 
     cscore = TMIDIX.chordify_score([1000, no_drums_escore_notes])
 
@@ -454,16 +480,22 @@ if f != '':
 
             dur = e[2]
 
-            if time != 0 and time % 2 != 0:
-                time += 1
-            if dur % 2 != 0:
-                dur += 1
+            if select_model_to_load == '187M-2048E-4L-16H-FP32-Fast-Small':
 
-            delta_time = int(max(0, min(255, time)) / 2)
+              delta_time = max(0, min(255, time))
+              dur = max(1, min(255, dur))
 
-            # Durations
+            else:
 
-            dur = int(max(0, min(255, dur)) / 2)
+              if time != 0 and time % 2 != 0:
+                  time += 1
+
+              if dur % 2 != 0:
+                  dur += 1
+
+              delta_time = int(max(0, min(255, time)) / 2)
+
+              dur = int(max(0, min(255, dur)) / 2)
 
             # Pitches
 
