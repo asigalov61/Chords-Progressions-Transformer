@@ -223,8 +223,8 @@ def TMIDIX_MIDI_Processor(midi_file):
                       dur = int(max(0, min(255, dur)) / 2)
 
                     else:
-                      delta_time = max(0, min(255, time))
-                      dur = max(1, min(255, dur))
+                      delta_time = max(0, min(127, time))
+                      dur = max(1, min(127, dur))
 
                     # Pitches
 
