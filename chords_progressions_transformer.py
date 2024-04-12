@@ -97,7 +97,7 @@ select_model_to_load = "187M-2048E-4L-16H-FP32-Fast-Small" # @param ["93M-1024E-
 
 #@markdown Model precision option
 
-model_precision = "float16" # @param ["bfloat16", "float16", "float32"]
+model_precision = "bfloat16" # @param ["bfloat16", "float16", "float32"]
 
 #@markdown bfloat16 == Half precision/faster speed (if supported, otherwise the model will default to float16)
 
@@ -482,8 +482,8 @@ if f != '':
 
             if select_model_to_load == '187M-2048E-4L-16H-FP32-Fast-Small':
 
-              delta_time = max(0, min(255, time))
-              dur = max(1, min(255, dur))
+              delta_time = max(0, min(127, time))
+              dur = max(1, min(127, dur))
 
             else:
 
